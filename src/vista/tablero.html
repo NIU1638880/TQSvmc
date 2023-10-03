@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matriz HTML</title>
+    <style>
+        /* Estilo para centrar la tabla en la página */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        table {
+            border: 1px solid #000; /* Borde de la tabla */
+            border-collapse: collapse; /* Colapso de bordes para mejorar la apariencia */
+        }
+
+        td {
+            padding: 20px; /* Espaciado interno en las celdas */
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <!-- JavaScript generará las filas y celdas aquí -->
+</table>
+
+<script>
+    // Obtén una referencia a la tabla
+    var table = document.querySelector('table');
+
+    // Número de filas y columnas en la matriz
+    var numRows = 10;
+    var numCols = 10;
+
+    // Genera las filas y celdas utilizando un bucle
+    for (var i = 1; i <= numRows; i++) {
+        var row = document.createElement('tr');
+        for (var j = 1; j <= numCols; j++) {
+            var cell = document.createElement('td');
+            cell.textContent = i + ',' + j; // Contenido de la celda
+            cell.id = 'cell-' + i + '-' + j; // ID de la celda
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+</script>
+</body>
+</html>
