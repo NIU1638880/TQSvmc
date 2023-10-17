@@ -3,8 +3,8 @@
 var table = document.querySelector('table');
 
     // Número de filas y columnas en la matriz
-    var numRows = 10;
-    var numCols = 10;
+    var numRows = 5;
+    var numCols = 5;
 
     // Genera las filas y celdas utilizando un bucle
     for (var i = 1; i <= numRows; i++) {

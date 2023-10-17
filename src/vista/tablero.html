@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Matriz HTML</title>
     <style>
         /* Estilo para centrar la tabla en la página */
@@ -14,28 +13,77 @@
         }
 
         table {
-            border: 1px solid #000; /* Borde de la tabla */
-            border-collapse: collapse; /* Colapso de bordes para mejorar la apariencia */
+            border: 1px solid #000;
+            border-collapse: collapse;
         }
 
         td {
-            padding: 20px; /* Espaciado interno en las celdas */
+            padding: 20px;
         }
 
         .pintada {
             background-color: yellow;
         }
 
+        /* Estilo para el título de la tabla */
+        caption {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Estilo para el header */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .formularios {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .formulario {
+            width: 40%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
-<table border="1">
-    <!-- JavaScript generará las filas y celdas aquí -->
-    <script src="tablero.js"></script>
-</table>
+<div>
+    <header>
+        <h1>Tocado y Hundido</h1>
+    </header>
+</div>
+<div>
+    <table border="1">
+        <script src="tablero.js"></script>
+    </table>
+    <script src="printer.js"></script>
+</div>
 
-<!-- JavaScript -->
-<script src="printer.js"></script>
-
+<section class="formularios">
+    <div class="formulario izquierdo">
+        <p>Introduce las coordenadas del barco 1 (formato: 1,1)</p>
+        <form>
+            <input type="text" name="piece1" placeholder="Pieza 1" >
+            <input type="text" name="piece2" placeholder="Pieza 2" >
+        </form>
+    </div>
+    <div class="formulario derecho">
+        <p>Introduce las coordenadas del barco 2 (formato: 1,1)</p>
+        <form>
+            <input type="text" name="piece1" placeholder="Pieza 1" >
+            <input type="text" name="piece2" placeholder="Pieza 2" >
+        </form>
+    </div>
+</section>
 </body>
 </html>
