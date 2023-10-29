@@ -1,3 +1,4 @@
+
 function pintarCelda(fila, columna) {
     var cell = document.getElementById('cell-' + fila + '-' + columna);
     if (cell) {
@@ -12,35 +13,22 @@ let barcos = [];
 function guardarBarco(numeroBarco) {
     let formId = "form" + numeroBarco;
     let form = document.getElementById(formId);
+    let piece1 = form.elements["piece1"].value;
+    let piece2 = form.elements["piece2"].value;
 
-    let piece1 = convertirCoordenadas(form.elements["piece1"].value);
-    let piece2 = convertirCoordenadas(form.elements["piece2"].value);
-
-    let barco = {
-        numeroBarco,
-        piece1,
-        piece2
-    };
-
-    if (coordenadasValidas(barco, barcos, numRows, numCols)) {
-        // Lógica para guardar en el array de barcos
-        barcos.push(barco);
-
-        // Ejemplo de cómo pintar las celdas individualmente
-        pintarCelda(piece1.x, piece1.y);
-        pintarCelda(piece2.x, piece2.y);
-
-        // Comprobación de que se guardan los barcos
-        console.log(barcos);
-    } else {
-        console.log('Coordenadas inválidas o ya ocupadas.');
+    // Agregar lógica para validar las coordenadas
+    if (!coordenadasValidas(piece1, piece2, barcos, numRows, numCols)) {
+        alert('Las coordenadas no son válidas');
+        return;
     }
-}
 
-function convertirCoordenadas(coordenadaStr) {
-    let partes = coordenadaStr.split(',');
-    return {
-        x: parseInt(partes[0], 10),
-        y: parseInt(partes[1], 10)
-    };
+    // Lógica para guardar en el array de barcos
+    barcos.push([numeroBarco, piece1, piece2]);
+
+
+    // Ejemplo de cómo pintar las celdas individualmente
+    let coordenadas1 = piece1.split(',');
+    let coordenadas2 = piece2.split(',');
+    pintarCelda(coordenadas1[0], coordenadas1[1]);
+    pintarCelda(coordenadas2[0], coordenadas2[1]);
 }
