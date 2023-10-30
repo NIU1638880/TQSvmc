@@ -12,7 +12,7 @@ let barcos = [];
 
 function guardarBarco(numeroBarco) {
     let formId = "form" + numeroBarco;
-    let form = document.getElementById(formId);
+    let form = document.getElementById('form' + numeroBarco);
     let piece1 = form.elements["piece1"].value;
     let piece2 = form.elements["piece2"].value;
 
@@ -22,9 +22,8 @@ function guardarBarco(numeroBarco) {
         return;
     }
 
-    // Lógica para guardar en el array de barcos
+    form.innerHTML = "El barco se ha colocado correctamente.";
     barcos.push([numeroBarco, piece1, piece2]);
-
 
     // Ejemplo de cómo pintar las celdas individualmente
     let coordenadas1 = piece1.split(',');
