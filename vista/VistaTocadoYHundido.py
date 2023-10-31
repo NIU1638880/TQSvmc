@@ -1,12 +1,20 @@
 import tkinter as tk
 from tkinter import messagebox
 
+from controlador.Login import Login
+
+
 class VistaTocadoYHundido:
     def __init__(self, controlador):
+
         self.controlador = controlador
         self.ventana = tk.Tk()
-        self.ventana.title("Tocado y Hundido")
+        self.ventana.withdraw()  # Oculta la ventana principal hasta que iniciemos sesión
 
+        self.login_window = None
+        self.username_entry = None
+        self.password_entry = None
+        self.show_login_window()
 
         # Títulos de los tableros
         tk.Label(self.ventana, text="Tablero del Jugador").grid(row=0, column=0, columnspan=5)
@@ -83,6 +91,46 @@ class VistaTocadoYHundido:
         for fila in self.botones_maquina:
             for btn in fila:
                 btn.config(state=tk.DISABLED)
+
+    def show_login_window(self):
+        self.login_window = tk.Toplevel(self.ventana)
+        self.login_window.title("Login/Register")
+
+        # Crear campos de entrada para nombre de usuario y contraseña
+        tk.Label(self.login_window, text="Username:").pack(padx=20, pady=5)
+        self.username_entry = tk.Entry(self.login_window)
+        self.username_entry.pack(padx=20, pady=5)
+
+        tk.Label(self.login_window, text="Password:").pack(padx=20, pady=5)
+        self.password_entry = tk.Entry(self.login_window, show="*")
+        self.password_entry.pack(padx=20, pady=5)
+
+        # Botones para login y registro
+        tk.Button(self.login_window, text="Login", command=self.login).pack(padx=20, pady=5)
+        tk.Button(self.login_window, text="Register", command=self.register).pack(padx=20, pady=5)
+
+    def login(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        login_system = Login()
+        if login_system.check_credentials(username, password):
+            self.login_window.destroy()  # Cerrar la ventana de login
+            self.ventana.deiconify()    # Mostrar la ventana principal
+        else:
+            messagebox.showerror("Error", "Incorrect credentials!")
+
+    def register(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        login_system = Login()
+        if login_system.register(username, password):
+            messagebox.showinfo("Success", "Registration successful!")
+            self.login_window.destroy()  # Cerrar la ventana de registro
+            self.ventana.deiconify()    # Mostrar la ventana principal
+        else:
+            messagebox.showerror("Error", "Failed to register!")
 
     def run(self):
         self.ventana.mainloop()
